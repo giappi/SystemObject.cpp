@@ -1,6 +1,6 @@
 #pragma once
 #include <cpp/lang/Object.h>
-#include <string>
+
 class String :
 	public Object
 {
