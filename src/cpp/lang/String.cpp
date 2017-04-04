@@ -36,6 +36,7 @@ String::String(String& str) : length(_length)
 
 String::~String()
 {
+	//delete[] _value;
 }
 
 Char String::charAt(u32 index)
@@ -91,9 +92,9 @@ String String::toUpperCase()
 	return str;
 }
 
-Char* String::toCharStar()
+const char* String::toCString()
 {
-	return (Char*)_value;
+	return (const char*)_value;
 }
 
 String String::substr(i32 start, i32 length = -1)

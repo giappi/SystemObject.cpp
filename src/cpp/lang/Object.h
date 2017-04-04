@@ -1,5 +1,6 @@
 #pragma once
 #include <_typedef.h>
+#include <cpp/lang/String.h>
 
 class Object
 {
@@ -8,5 +9,6 @@ public:
 	~Object();
 
 	bool equals(Object object);
-	const char* toString();
+	const char* getName();
+	String toString();
 };

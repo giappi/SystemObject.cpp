@@ -1,8 +1,8 @@
 #pragma once
-#include <cpp/lang/Object.h>
+#include <_typedef.h>
 
-class String :
-	public Object
+class String
+	/*public Object*/
 {
 public:
 	String();
@@ -54,7 +54,7 @@ public:
 	String trim();
 
 	/* convert string to array of char */
-	Char* toCharStar();
+	const char* toCString();
 
 	byte* getBytes();
 

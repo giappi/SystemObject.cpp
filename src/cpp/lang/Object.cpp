@@ -1,6 +1,5 @@
 #include <cpp/lang/Object.h>
 
-
 Object::Object()
 {
 }
@@ -14,7 +13,7 @@ bool Object::equals(Object object)
 	return false;
 }
 
-const char* Object::toString()
+const char* Object::getName()
 {
 	return "";
 }
