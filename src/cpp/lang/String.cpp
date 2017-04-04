@@ -91,6 +91,11 @@ String String::toUpperCase()
 	return str;
 }
 
+Char* String::toCharStar()
+{
+	return (Char*)_value;
+}
+
 String String::substr(i32 start, i32 length = -1)
 {
 	return "Not implemented";
