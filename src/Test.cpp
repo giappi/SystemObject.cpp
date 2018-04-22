@@ -2,17 +2,17 @@
 #include <cpp/lang/String.h>
 #include <cpp/lang/Array.h>
 #include <stdio.h>
-#include <string>
 
 void testInteger()
 {
 	Integer n = 30;
 	Integer m = n + 1;
-	printf("  Value is %d\n", m);
+	printf("  Value is %d\n", (int)m);
 }
 void testString()
 {
-	String s = " Hoang Dinh     Giap ";
+	String s(" Hoang Dinh     Giap ");
+	// test copy constructor
 	const char* t = s;
 	printf("Origin Text:   %s\n", s.toCString());
 	printf("toLowerCase:   %s\n", s.toLowerCase().toCString());

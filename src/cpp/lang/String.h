@@ -1,5 +1,5 @@
 #pragma once
-#include <_typedef.h>
+#include "_typedef.h"
 
 class String
 	/*public Object*/
@@ -7,16 +7,15 @@ class String
 public:
 	String();
 
-	String(const char* s);
+	String(const char* str);
 	~String();
 
-	String(String &s);
-
+	String(const String &str);
 	
-	// cast String to Char*
-	operator Char*() const
+	// cast String to char*
+	operator char*() const
 	{
-		return (Char*)_value;
+		return _value;
 	};
 
 	// cast String to const char*
@@ -25,38 +24,30 @@ public:
 		return (const char*)_value;
 	};
 
-	// cast String to char*
-	operator char*() const
-	{
-		return (char*)_value;
-	};
-	
 
 	/* get character in String at index */
-	Char operator [](i32 index) const
+	char operator [](usize index) const
 	{
-		return index < _length ? _value[index] : NULL;
+		return _value[index];
 	}
 
 	/* set character in String at index */
-	Char & operator [](i32 index)
+	char & operator [](usize index)
 	{
-		return index < _length ? _value[index] : _tmp;
+		return _value[index];
 	}
 
 	/* get character in string at index */
-	Char charAt(u32 index);
+	char charAt(usize index);
 
 	/* get position of `substr` in String, return -1 if not found */
-	i32 indexOf(String substr);
+    usize indexOf(String substr);
 
 	/* removes whitespace from both ends of a string */
 	String trim();
 
 	/* convert string to array of char */
 	const char* toCString();
-
-	byte* getBytes();
 
 	/* convert string to lower case */
 	String toLowerCase();
@@ -65,19 +56,19 @@ public:
 	String toUpperCase();
 
 	/* take substring contains `length` character from index `start` */
-	String substr(i32 start, i32 length);
+	String substr(usize start, usize length) const;
 
 	/* take substring contains from index `start` to index `end` */
-	String substring(i32 start, i32 end);
+	String substring(usize start, usize end) const;
 
 
 public:
 	/* length or number of characters */
-	const int &length;
+	const usize &length;
 
 private:
-	int   _length = 0;
-	Char* _value = NULL;
-	Char  _tmp;
+    usize   _length = 0;
+	char* _value = null;
+	char  _tmp;
 };
 

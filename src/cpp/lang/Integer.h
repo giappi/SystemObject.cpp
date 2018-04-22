@@ -1,5 +1,6 @@
 #pragma once
-#include <cpp/lang/Number.h>
+#include "Number.h"
+
 class Integer :
 	public Number
 {
