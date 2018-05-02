@@ -2,19 +2,16 @@ cmake_minimum_required(VERSION 3.7)
 project(system_object_cpp)
 
 set(CMAKE_CXX_STANDARD 11)
-include_directories(src)
-set(SOURCE_FILES
-        src/cpp/lang/Array.cpp
-        src/cpp/lang/Array.h
-        src/cpp/lang/Integer.cpp
-        src/cpp/lang/Integer.h
-        src/cpp/lang/Number.cpp
-        src/cpp/lang/Number.h
-        src/cpp/lang/Object.cpp
-        src/cpp/lang/Object.h
-        src/cpp/lang/String.cpp
-        src/cpp/lang/String.h
-        src/_typedef.h
-        src/Test.cpp)
+SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -ggdb -O0 -std=c++14 ")
 
-add_executable(system_object_cpp ${SOURCE_FILES})
+include_directories( 
+    "/usr/include/c++/7.3.1/bits" 
+    "${PROJECT_SOURCE_DIR}/src" 
+)
+
+file(GLOB SOURCES 
+        "${PROJECT_SOURCE_DIR}/src/cpp/lang/*.cpp" 
+        "${PROJECT_SOURCE_DIR}/src/*.cpp" 
+)
+
+add_executable(system_object_cpp ${SOURCES})

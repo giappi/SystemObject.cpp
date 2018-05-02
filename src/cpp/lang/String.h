@@ -1,8 +1,10 @@
 #pragma once
 #include "_typedef.h"
+#include "Object.h"
+#include <string>
 
-class String
-	/*public Object*/
+class String:
+    public Object
 {
 public:
 	String();
@@ -11,64 +13,97 @@ public:
 	~String();
 
 	String(const String &str);
-	
+
 	// cast String to char*
-	operator char*() const
-	{
-		return _value;
-	};
-
+	virtual operator char*() const;
 	// cast String to const char*
-	operator const char*() const
-	{
-		return (const char*)_value;
-	};
-
+	virtual operator const char*() const;
 
 	/* get character in String at index */
-	char operator [](usize index) const
-	{
-		return _value[index];
-	}
+	virtual byte        operator [](usize index) const;
 
 	/* set character in String at index */
-	char & operator [](usize index)
-	{
-		return _value[index];
-	}
+	virtual byte&       operator [](usize index);
+    
+    virtual String      operator+(const String& str) const;
 
 	/* get character in string at index */
-	char charAt(usize index);
+	virtual byte        charAt(usize index) const;
+    
+    /**
+     * Check if this String equals with another
+     * @param str anotherString to compare
+     * @return true if two String are the same
+     */
+    virtual boolean     equals(const String& str) const;
 
-	/* get position of `substr` in String, return -1 if not found */
-    usize indexOf(String substr);
+    /**
+     * get position of `str` in String, return length of this String if not found
+     * @param str a text to search in this String
+     * @return position of `str` in this String
+     */
+    virtual usize       indexOf(String str) const;
+    /**
+     * 
+     * @param str a text to search in this String
+     * @param fromIndex the index from which to start the search
+     * @return position of `str` in this String
+     */
+    virtual usize       indexOf(String str, usize fromIndex) const;
 
-	/* removes whitespace from both ends of a string */
-	String trim();
+	/**
+     * Return a new String with all extra whitespaces from begining and ending removed
+     */
+	virtual String      trim() const;
 
-	/* convert string to array of char */
-	const char* toCString();
+	/**
+     * Convert this String to array of bytes
+     * @return array of
+     */
+	virtual const byte* toByteArray() const;
 
-	/* convert string to lower case */
-	String toLowerCase();
+	/**
+     * Converts all of the characters in this String to lower case
+     * @return the String that is converted to lowercase
+     */
+	virtual String      toLowerCase() const;
 
-	/* convert string to upper case */
-	String toUpperCase();
+	/**
+     * Converts all of the characters in this String to upper case
+     * @return the String that is converted to uppercase
+     */
+	virtual String      toUpperCase() const;
 
-	/* take substring contains `length` character from index `start` */
-	String substr(usize start, usize length) const;
+	/**
+     * Take a new string that is a substring of this string by first index and length of substring
+     * @param from the position that is the begining of substring
+     * @param length the length of substring
+     * @return the specified substring
+     */
+	virtual String      substr(usize from, usize length) const;
 
-	/* take substring contains from index `start` to index `end` */
-	String substring(usize start, usize end) const;
+	/**
+     * Take a new string that is a substring of this string by given index
+     * @param begin The begining index
+     * @param end The ending index
+     * @return the specified substring
+     */
+	virtual String      substring(usize begin, usize end) const;
+
+    /**
+     * Convert string to String
+     * @return String 
+     */
+    virtual String      toString() const override;
 
 
 public:
 	/* length or number of characters */
-	const usize &length;
+	const usize&        length;
 
 private:
-    usize   _length = 0;
-	char* _value = null;
-	char  _tmp;
+    usize               _length = 0;
+	std::string         _value = "";
+	byte                _tmp;
 };
 

@@ -1,107 +1,124 @@
 #include "cpp/lang/String.h"
-
+#include <iostream>
 
 String::String() : length(_length)
 {
-	_length = 0;
-	_value = new char[_length + 1];
-	_value[0] = '\0';
+    _value  = "";
+    _length = _value.length();
 }
 
 String::String(const char* str) : length(_length)
 {
-	_length = 0;
-	while (str[_length] != '\0')
-	{
-		++_length;
-	}
-	_value = new char[_length + 1];
-	for (usize i = _length; i-- > 0;)
-	{
-		_value[i] = str[i];
-	}
-	_value[_length] = '\0';
+    _value  = str;
+    _length = _value.length();
 }
 
 String::String(const String& str) : length(_length)
 {
-	_length = str.length;
-	_value = new char[_length];
-	for (usize i = _length; i-- > 0;)
-	{
-		_value[i] = str[i];
-	}
-	_value[_length] = '\0';
+    _value   = str;
+    _length = _value.length();
 }
 
 String::~String()
 {
-	delete[] _value;
 }
 
-char String::charAt(usize index)
+boolean String::equals(const String& object) const
 {
-	return  index > _length-1 ? _value[index] : '\0';
+    return Object::equals(object);
 }
 
 
-#pragma untested
+String String::operator+(const String& str) const
+{
+    return "Not implemented!";
+}
+
+char String::operator[](usize index) const
+{
+    return _value[index];
+}
+
+
+char& String::operator[](usize index)
+{
+    return _value[index];
+}
+
+String::operator char*() const
+{
+    return (char*) _value.c_str();
+}
+
+String::operator const char*() const
+{
+    return (const char*) _value.c_str();
+}
+
+
+
+byte String::charAt(usize index) const
+{
+	return  index < _length ? _value[index] : '\0';
+}
+
+
 // TODO: improve string search
-usize String::indexOf(String str)
+usize String::indexOf(String str) const
 {
-	for (u32 i = 0; i < _length - str.length; i++)
-	{
-		u32 diff = 0;
-		for (u32 j = 0; j < str.length; j++)
-		{
-			diff += _value[i + j] != str.charAt(j);
-		}
-		if (diff == 0)
-		{
-			return i;
-		}
-	}
-	return -1;
+    return this->indexOf(str, 0);
+};
+
+usize String::indexOf(String str, usize fromIndex) const
+{
+    return _value.find(str.toByteArray(), fromIndex);
+}
+
+
+
+String String::trim() const
+{
+	return "Not implemented!";
 };
 
 
-String String::trim()
+String String::toLowerCase() const
 {
-	return *this;
-};
-
-
-String String::toLowerCase()
-{
-	String str = *this;
-	for (usize i = 0; i < str.length; i++)
+	String str = "";
+	for (register usize i = 0; i < str.length; i++)
 	{
-		str[i] += _value[i] > '@' && _value[i] < '[' ? 32 : 0;
+		str[i] += _value[i] > '@' && _value[i] < '[' ? ('a'-'A') : 0;
 	}
 	return str;
 };
 
 
-String String::toUpperCase()
+String String::toUpperCase() const
 {
-	String str = *this;
-	for (usize i = str.length; i-- > 0;)
+	String str = "";
+	for (register usize i = str.length; i-- > 0;)
 	{
-		str[i] -= _value[i] > '`' && _value[i] < '{' ? 32 : 0;
+		str[i] -= _value[i] > '`' && _value[i] < '{' ? ('a'-'A') : 0;
 	}
 	return str;
 }
 
-const char* String::toCString()
+const byte* String::toByteArray() const
 {
-	return (const char*)_value;
+	return (byte*)_value.c_str();
 }
 
 String String::substr(usize start, usize length) const
 {
-	return String("Not implemented");
+	return "Not implemented!";
 };
+
 String String::substring(usize start, usize end = -1) const
 {
-	return String("Not implemented");
+	return "Not implemented!";
 };
+
+String String::toString() const
+{
+    return *this;
+}

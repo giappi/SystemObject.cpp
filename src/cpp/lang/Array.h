@@ -2,6 +2,7 @@
 #include "cpp/lang/Object.h"
 #include <cstring>
 #include <initializer_list>
+#include <vector>
 
 template <class T>
 class Array :
@@ -13,14 +14,14 @@ public:
 	Array(std::initializer_list<T> list);
 
 	/* set item in at index */
-	T operator [](i32 index) const;
+	T operator [](int32 index) const;
 
 	/* get item at index */
-	T & operator [](i32 index);
+	T & operator [](int32 index);
 
 	T getElementAt(int index);
 
-	u32 push(T item);
+	uint32 push(T item);
 
 	T pop();
 
@@ -28,10 +29,10 @@ public:
 
 public:
 	/* length or number of items */
-	const u32 &length;
+	const uint32 &length;
 private:
 	T* _value = NULL;
 	T _tmp;
-	u32 _length = 0;
+	uint32 _length = 0;
 };
 

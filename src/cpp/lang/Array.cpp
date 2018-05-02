@@ -3,8 +3,8 @@
 #include <stdexcept>
 
 template class Array<boolean>;
-template class Array<i32>;
-template class Array<u32>;
+template class Array<int32>;
+template class Array<uint32>;
 template class Array<float>;
 template class Array<double>;
 
@@ -27,7 +27,7 @@ Array<T>::Array(std::initializer_list<T> list) : length(_length)
 
 /* set item in at index */
 template <class T>
-T Array<T>::operator [](i32 index) const
+T Array<T>::operator [](int32 index) const
 {
     if (index < 0 || index >= length)
     {
@@ -38,7 +38,7 @@ T Array<T>::operator [](i32 index) const
 
 /* get item at index */
 template <class T>
-T & Array<T>::operator [](i32 index)
+T & Array<T>::operator [](int32 index)
 {
     if (index < 0 || index >= length)
     {
@@ -55,7 +55,7 @@ T Array<T>::getElementAt(int index)
 }
 
 template <class T>
-u32 Array<T>::push(T item)
+uint32 Array<T>::push(T item)
 {
     _length++;
     T* _value1 = new T[_length];

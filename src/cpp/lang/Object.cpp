@@ -1,4 +1,5 @@
-#include <cpp/lang/Object.h>
+#include "cpp/lang/Object.h"
+#include "cpp/lang/String.h"
 
 Object::Object()
 {
@@ -8,12 +9,25 @@ Object::~Object()
 {
 }
 
-bool Object::equals(Object object)
+boolean Object::equals(const Object& object) const
 {
-	return false;
+    // TODO: Implement
+	return this == &object;  // !!!WRONG
 }
 
-const char* Object::getName()
+String Object::getName() const
 {
-	return "";
+	return String(typeid(*this).name());
 }
+
+usize Object::hashCode() const
+{
+    // TODO: Implement
+    return 0; // !!!WRONG
+}
+
+String Object::toString() const
+{
+    return "<String>";
+}
+
