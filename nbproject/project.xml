@@ -5,8 +5,8 @@
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>system-object-cpp</name>
             <c-extensions>c</c-extensions>
-            <cpp-extensions>cpp,cxx</cpp-extensions>
-            <header-extensions>h</header-extensions>
+            <cpp-extensions>cxx</cpp-extensions>
+            <header-extensions>cpp,h</header-extensions>
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
