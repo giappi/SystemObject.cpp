@@ -1,6 +1,4 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
-/* 
  * File:   SharedPointer.h
  * Author: Giappi
  *
@@ -24,7 +22,7 @@ public:
     {
         return this->get()->operator+(that);
     };
-        
+
 };
 
 

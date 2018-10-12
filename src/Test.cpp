@@ -24,7 +24,7 @@ void testString()
     Object& o = s;
     printf("Object String:   %s\n", o.getName().toByteArray());
 
-    
+
     // Test equals
     String s1 = "aa";
     String s2 = "ab";

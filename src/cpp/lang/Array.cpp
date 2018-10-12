@@ -64,7 +64,7 @@ uint32 Array<T>::push(T item)
     {
         _value1[i] = _value[i];
     }
-    
+
     delete[] _value;
     _value = _value1;
     return _length;

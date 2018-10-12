@@ -24,12 +24,12 @@ public:
 
 	/* set character in String at index */
 	virtual byte&       operator [](usize index);
-    
+
     virtual String      operator+(const String& str) const;
 
 	/* get character in string at index */
 	virtual byte        charAt(usize index) const;
-    
+
     /**
      * Check if this String equals with another
      * @param str anotherString to compare
@@ -44,7 +44,7 @@ public:
      */
     virtual usize       indexOf(String str) const;
     /**
-     * 
+     *
      * @param str a text to search in this String
      * @param fromIndex the index from which to start the search
      * @return position of `str` in this String
@@ -92,7 +92,7 @@ public:
 
     /**
      * Convert string to String
-     * @return String 
+     * @return String
      */
     virtual String      toString() const override;
 

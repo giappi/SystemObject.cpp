@@ -8,13 +8,12 @@ public:
 	Integer(int n);
 	virtual ~Integer();
 public:
-	
+
 	operator int() const
 	{
 		return value;
 	};
-	
-	
+
 	void operator =(const int& n)
 	{
 		value = n;
@@ -24,7 +23,7 @@ public:
 	{
 		return value + n;
 	}
-	
+
 
 private:
 	int value = 0;

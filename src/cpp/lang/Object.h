@@ -18,7 +18,7 @@ public:
 	virtual boolean     equals(const Object& object) const;
     /**
      * Get name of this Object
-     * @return 
+     * @return String
      */
 	virtual String      getName() const;
     /**
