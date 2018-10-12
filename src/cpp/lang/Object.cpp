@@ -1,5 +1,6 @@
 #include "cpp/lang/Object.h"
 #include "cpp/lang/String.h"
+#include <typeinfo>
 
 Object::Object()
 {
