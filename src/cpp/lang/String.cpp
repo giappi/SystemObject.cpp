@@ -59,6 +59,12 @@ boolean String::equals(const String& __string2) const
 }
 
 
+boolean String::exists(const char& ch)
+{
+    return (STRING(_value)).find(ch) != StdString::npos;
+}
+
+
 String String::operator+(const String& __another) const
 {
     return String((STRING(this->_value) + STRING(__another._value)).c_str());

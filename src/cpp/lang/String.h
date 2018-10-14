@@ -1,9 +1,11 @@
 #pragma once
 #include "_typedef.h"
 #include "Object.h"
+#include "ArrayAccess.h"
 
 class String:
-    public Object
+    public Object,
+    public ArrayAccess<char>
 {
 public:
 	String();
@@ -24,14 +26,14 @@ public:
      * @param index index of a char in this String
      * @return the char at the index
      */
-	virtual char        operator [](usize index) const;
+	virtual char        operator [](usize index) const override;
 
     /**
      * Set character in String at index
      * @param index index of a char in this String
      * @return the char at the index
      */
-	virtual char&       operator [](usize index);
+	virtual char&       operator [](usize index) override;
 
     /**
      * Concatenate two String into one String
@@ -54,6 +56,12 @@ public:
      */
     virtual boolean     equals(const String& str) const;
 
+    /**
+     * Check if a character exists in this String
+     * @param ch the character need to check
+     * @return true if exists, false otherwise
+     */
+    virtual boolean     exists(const char &ch) override;
     /**
      * Get length of this String
      * @return length of this String
