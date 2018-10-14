@@ -57,9 +57,9 @@ boolean String::equals(const String& __string2) const
 }
 
 
-String String::operator+(const String& str) const
+String String::operator+(const String& __another) const
 {
-    return "Not implemented!";
+    return String((STRING(this->_value) + STRING(__another._value)).c_str());
 }
 
 char String::operator[](usize index) const
@@ -73,16 +73,11 @@ char& String::operator[](usize index)
     return STRING(_value)[index];
 }
 
-String::operator char*() const
-{
-    return (char*) STRING(_value).c_str();
-}
 
 String::operator const char*() const
 {
     return (const char*) STRING(_value).c_str();
 }
-
 
 
 char String::charAt(usize index) const
@@ -91,7 +86,6 @@ char String::charAt(usize index) const
 }
 
 
-// TODO: improve string search
 usize String::indexOf(String str) const
 {
     return this->indexOf(str, 0);

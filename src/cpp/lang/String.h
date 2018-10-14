@@ -13,20 +13,38 @@ public:
 
 	String(const String &str);
 
-	// cast String to char*
-	virtual operator char*() const;
-	// cast String to const char*
+    /**
+     * cast String to 'const char*'
+     * @return array of 'const char'
+     */
 	virtual operator const char*() const;
 
-	/* get character in String at index */
+    /**
+     * Get character in String at index
+     * @param index index of a char in this String
+     * @return the char at the index
+     */
 	virtual char        operator [](usize index) const;
 
-	/* set character in String at index */
+    /**
+     * Set character in String at index
+     * @param index index of a char in this String
+     * @return the char at the index
+     */
 	virtual char&       operator [](usize index);
 
+    /**
+     * Concatenate two String into one String
+     * @param str another String
+     * @return a new String that has length equals to sum of two String
+     */
     virtual String      operator+(const String& str) const;
 
-	/* get character in string at index */
+    /**
+     * Get character in String at index
+     * @param index index of a char in this String
+     * @return the char at the index
+     */
 	virtual char        charAt(usize index) const;
 
     /**
@@ -40,6 +58,7 @@ public:
      * Get length of this String
      * @return length of this String
      */
+
     virtual usize       getLength() const;
     /**
      * get position of `str` in String, return length of this String if not found
@@ -48,8 +67,10 @@ public:
      */
 
     virtual usize       indexOf(String str) const;
+
     /**
-     *
+     * Get index of a substring in this String,
+     * return length of this String if not found
      * @param str a text to search in this String
      * @param fromIndex the index from which to start the search
      * @return position of `str` in this String
@@ -62,8 +83,10 @@ public:
      * @return index of last character, equalivant to (LENGTH - 1)
      */
     virtual usize       indexOfEndString() const;
+
 	/**
      * Return a new String with all extra whitespaces from begining and ending removed
+     * @return the trimed String
      */
 	virtual String      trim() const;
 
@@ -115,7 +138,7 @@ public:
     virtual String      substring(usize begin) const;
 
     /**
-     * Convert string to String
+     * Convert this String to String
      * @return String
      */
     virtual String      toString() const override;
@@ -140,6 +163,13 @@ private:
     /**
      * store data of this String
      */
-	void*               _value = nullptr;
+	void*               _value = null;
 };
 
+
+/**
+ * @TODO:
+ * Implement method modify on this String
+ * + toLowerCase() -> doLowerCase()
+ * + toUpperCase() -> doUpperCase()
+ */
