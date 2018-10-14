@@ -49,7 +49,7 @@ public:
      * @return position of `str` in this String
      */
     virtual usize       indexOf(String str, usize fromIndex) const;
-    virtual usize       GetLength() const;
+    virtual usize       getLength() const;
 	/**
      * Return a new String with all extra whitespaces from begining and ending removed
      */
@@ -108,14 +108,25 @@ public:
     virtual String      toString() const override;
 
 private:
+    /**
+     * Update the variable that denote length of this String
+     */
     virtual void        updateLength();
 
 public:
-	/* length or number of characters */
+	/**
+     * property to get length of this String, equalivant to this.getLength()
+     */
 	const usize&        length;
 
 private:
+    /**
+     * store length of this String
+     */
     usize               _length = 0;
+    /**
+     * store data of this String
+     */
 	void*               _value = nullptr;
 };
 

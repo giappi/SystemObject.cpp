@@ -80,7 +80,7 @@ String::operator const char*() const
 
 char String::charAt(usize index) const
 {
-	return  index < this->GetLength() ? STRING(_value)[index] : '\0';
+	return  index < this->getLength() ? STRING(_value)[index] : '\0';
 }
 
 
@@ -95,12 +95,12 @@ usize String::indexOf(String str, usize fromIndex) const
     auto std_string_index = STRING(_value).find(str.toCharArray(), fromIndex);
     if(std_string_index == StdString::npos)
     {
-        std_string_index = this->GetLength();
+        std_string_index = this->getLength();
     }
     return std_string_index;
 }
 
-usize String::GetLength() const
+usize String::getLength() const
 {
     return STRING(_value).length();
 }
@@ -115,7 +115,7 @@ String String::trim() const
 String String::toLowerCase() const
 {
 	String str = *this;
-	for (register usize i = 0; i < str.GetLength(); i++)
+	for (register usize i = 0; i < str.getLength(); i++)
 	{
 		str[i] += STRING(_value)[i] > '@' && STRING(_value)[i] < '[' ? ('a'-'A') : 0;
 	}
@@ -126,7 +126,7 @@ String String::toLowerCase() const
 String String::toUpperCase() const
 {
 	String str = *this;
-	for (register usize i = str.GetLength(); i-- > 0;)
+	for (register usize i = str.getLength(); i-- > 0;)
 	{
 		str[i] -= STRING(_value)[i] > '`' && STRING(_value)[i] < '{' ? ('a'-'A') : 0;
 	}
@@ -156,7 +156,7 @@ String String::substring(usize __begin, usize __end) const
 
 String String::substring(usize __begin) const
 {
-    return this->substr(__begin, this->GetLength());
+    return this->substr(__begin, this->getLength());
 }
 
 
