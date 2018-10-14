@@ -1,16 +1,20 @@
-#include <stddef.h>
+#ifndef _TYPEDEFH
+#define _TYPEDEFH
+
+#include <cstdint>
 
 typedef bool                  boolean;
-typedef char                  int8;
+typedef std::int8_t           int8;
 typedef unsigned char         byte;
-typedef int                   int32;
-typedef long long             int64;
-typedef size_t                usize;
-typedef unsigned char         uint8;
-typedef unsigned int          uint32;
-typedef unsigned long long    uint64;
+typedef std::int32_t          int32;
+typedef std::int64_t          int64;
+typedef std::size_t           usize;
+typedef std::uint8_t          uint8;
+typedef std::uint32_t         uint32;
+typedef std::uint64_t         uint64;
 
-#define null                  nullptr
+
+const   std::nullptr_t        null = nullptr;
 
 #if 0
 #include "utils/SharedPointer.h"
@@ -25,3 +29,4 @@ typedef unsigned long long    uint64;
 //DEFINE_POINTER(Object);
 //DEFINE_POINTER(String);
 
+#endif /* _TYPEDEFH */
