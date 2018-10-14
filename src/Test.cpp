@@ -11,15 +11,17 @@ void testInteger()
 }
 void testString()
 {
-	String s = "(    The quick brown \"Fox\" jumps over the lazy \"Dog\")";
+	String s = "    (The quick brown \"Fox\" jumps over the lazy \"Dog\")  ";
     printf("Length: %u\n", s.length);
 	// test copy constructor
 	const char* t = s.toCharArray();
-	printf("Origin Text:   %s\n", s.toCharArray());
-	printf("toLowerCase:   %s\n", s.toLowerCase().toCharArray());
-	printf("toUpperCase:   %s\n", s.toUpperCase().toCharArray());
-	printf("Origin Text:   %s\n", s.toByteArray());
+	printf("Origin Text:   '%s'\n", s.toCharArray());
+	printf("toLowerCase:   '%s'\n", s.toLowerCase().toCharArray());
+	printf("toUpperCase:   '%s'\n", s.toUpperCase().toCharArray());
+	printf("Trim   Text:   '%s'\n", s.trim().toCharArray());
+    printf("Origin Text:   '%s'\n", s.toCharArray());
 
+    printf("\n");
     // Test polymorphism
     Object& o = s;
     printf("Object String:   %s\n", o.getName().toCharArray());
@@ -33,8 +35,10 @@ void testString()
     printf("s1.hasCode() == s2.hashCode() ? %d\n", s1.hashCode() == s2.hashCode());
     printf("s1 == s2 ? %d\n", s1.equals(s2));
 
-	uint32 nh = s.indexOf("nh");
-	printf("Index Of 'nh': %ul\n", nh);
+
+
+	uint32 nh = s.indexOf("over");
+	printf("Index Of 'over': %ul\n", nh);
 }
 
 void testArray()

@@ -2,6 +2,8 @@
 #include <string>
 
 typedef std::string StdString;
+const char CHAR_SPACE = ' ';
+const char CHAR_TAB   = '\t';
 
 #pragma region HELP_FUNCTIONS
 inline void*                    CREATE_STRING(const char* __const_char_array)
@@ -18,6 +20,11 @@ inline void                     DELETE_STRING(void* __void_pointer)
 inline StdString&               STRING(void* __void_pointer)
 {
     return *((StdString*)__void_pointer);
+}
+
+inline boolean                  IS_WHITESPACE(char ch)
+{
+    return ch == CHAR_SPACE || ch == CHAR_TAB;
 }
 #pragma endregion HELP_FUNCTIONS
 
@@ -100,6 +107,12 @@ usize String::indexOf(String str, usize fromIndex) const
     return std_string_index;
 }
 
+usize String::indexOfEndString() const
+{
+    return this->getLength() - 1;
+}
+
+
 usize String::getLength() const
 {
     return STRING(_value).length();
@@ -108,7 +121,19 @@ usize String::getLength() const
 
 String String::trim() const
 {
-	return "Not implemented!";
+    // trim from left
+    usize index_begin = 0;
+    while( IS_WHITESPACE(STRING(_value)[index_begin]))
+    {
+         index_begin += 1;
+    }
+    //trim from right
+    usize index_end = this->indexOfEndString();
+    while( IS_WHITESPACE(STRING(_value)[index_end]))
+    {
+        index_end -= 1;
+    }
+	return this->substring(index_begin, index_end);
 };
 
 

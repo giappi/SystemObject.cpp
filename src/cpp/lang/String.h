@@ -37,10 +37,16 @@ public:
     virtual boolean     equals(const String& str) const;
 
     /**
+     * Get length of this String
+     * @return length of this String
+     */
+    virtual usize       getLength() const;
+    /**
      * get position of `str` in String, return length of this String if not found
      * @param str a text to search in this String
      * @return position of `str` in this String
      */
+
     virtual usize       indexOf(String str) const;
     /**
      *
@@ -48,8 +54,14 @@ public:
      * @param fromIndex the index from which to start the search
      * @return position of `str` in this String
      */
+
     virtual usize       indexOf(String str, usize fromIndex) const;
-    virtual usize       getLength() const;
+
+    /**
+     * Get index of last character in this String
+     * @return index of last character, equalivant to (LENGTH - 1)
+     */
+    virtual usize       indexOfEndString() const;
 	/**
      * Return a new String with all extra whitespaces from begining and ending removed
      */
@@ -57,12 +69,13 @@ public:
 
 	/**
      * Convert this String to array of bytes
-     * @return array of
+     * @return array of bytes
      */
 	virtual const byte* toByteArray() const;
+
     /**
      * Convert this String to array of chars
-     * @return 
+     * @return array of chars
      */
     virtual const char* toCharArray() const;
 
