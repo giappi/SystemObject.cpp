@@ -1,13 +1,15 @@
 #pragma once
 #include "cpp/lang/Object.h"
 #include "cpp/lang/ArrayAccess.h"
+#include "Iterable.h"
 #include <initializer_list>
 #include <vector>
 
 template <class T>
 class Array :
 	public Object,
-    public ArrayAccess<T>
+    public ArrayAccess<T>,
+    public Iterable<T>
 {
 public:
 
@@ -22,6 +24,15 @@ public:
 	virtual T           getElementAt(int index);
 	virtual uint32      push(T item);
 	T                   pop();
+
+    inline T* begin()
+    {
+        return &_value[0];
+    };
+    inline T* end()
+    {
+        return &_value[_length];
+    };
 
 	virtual ~Array();
 
