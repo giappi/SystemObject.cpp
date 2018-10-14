@@ -19,15 +19,15 @@ public:
 	virtual operator const char*() const;
 
 	/* get character in String at index */
-	virtual byte        operator [](usize index) const;
+	virtual char        operator [](usize index) const;
 
 	/* set character in String at index */
-	virtual byte&       operator [](usize index);
+	virtual char&       operator [](usize index);
 
     virtual String      operator+(const String& str) const;
 
 	/* get character in string at index */
-	virtual byte        charAt(usize index) const;
+	virtual char        charAt(usize index) const;
 
     /**
      * Check if this String equals with another
@@ -49,7 +49,7 @@ public:
      * @return position of `str` in this String
      */
     virtual usize       indexOf(String str, usize fromIndex) const;
-
+    virtual usize       GetLength() const;
 	/**
      * Return a new String with all extra whitespaces from begining and ending removed
      */
@@ -60,6 +60,11 @@ public:
      * @return array of
      */
 	virtual const byte* toByteArray() const;
+    /**
+     * Convert this String to array of chars
+     * @return 
+     */
+    virtual const char* toCharArray() const;
 
 	/**
      * Converts all of the characters in this String to lower case
@@ -87,7 +92,14 @@ public:
      * @param end The ending index
      * @return the specified substring
      */
+
 	virtual String      substring(usize begin, usize end) const;
+	/**
+     * Take a new string that is a substring of this string from given index to end of String
+     * @param begin The begining index
+     * @return the specified substring
+     */
+    virtual String      substring(usize begin) const;
 
     /**
      * Convert string to String
@@ -105,6 +117,5 @@ public:
 private:
     usize               _length = 0;
 	void*               _value = nullptr;
-	byte                _tmp;
 };
 

@@ -2,12 +2,13 @@
 
 typedef bool                  boolean;
 typedef char                  int8;
+typedef unsigned char         byte;
 typedef int                   int32;
 typedef size_t                usize;
 typedef unsigned char         uint8;
 typedef unsigned int          uint32;
 typedef unsigned long long    uint64;
-#define byte                  char
+
 #define null                  nullptr
 
 #if 0

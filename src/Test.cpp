@@ -11,18 +11,18 @@ void testInteger()
 }
 void testString()
 {
-	String s = " Hoang Dinh     Giap ";
+	String s = "(    The quick brown \"Fox\" jumps over the lazy \"Dog\")";
     printf("Length: %u\n", s.length);
 	// test copy constructor
-	const char* t = s.toByteArray();
-	printf("Origin Text:   %s\n", s.toByteArray());
-	printf("toLowerCase:   %s\n", s.toLowerCase().toByteArray());
-	printf("toUpperCase:   %s\n", s.toUpperCase().toByteArray());
+	const char* t = s.toCharArray();
+	printf("Origin Text:   %s\n", s.toCharArray());
+	printf("toLowerCase:   %s\n", s.toLowerCase().toCharArray());
+	printf("toUpperCase:   %s\n", s.toUpperCase().toCharArray());
 	printf("Origin Text:   %s\n", s.toByteArray());
 
     // Test polymorphism
     Object& o = s;
-    printf("Object String:   %s\n", o.getName().toByteArray());
+    printf("Object String:   %s\n", o.getName().toCharArray());
 
 
     // Test equals
@@ -34,7 +34,7 @@ void testString()
     printf("s1 == s2 ? %d\n", s1.equals(s2));
 
 	uint32 nh = s.indexOf("nh");
-	printf("Index Of 'nh': %u\n", nh);
+	printf("Index Of 'nh': %ul\n", nh);
 }
 
 void testArray()
