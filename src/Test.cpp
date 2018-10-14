@@ -12,7 +12,7 @@ void testInteger()
 void testString()
 {
 	String s = " Hoang Dinh     Giap ";
-
+    printf("Length: %u\n", s.length);
 	// test copy constructor
 	const char* t = s.toByteArray();
 	printf("Origin Text:   %s\n", s.toByteArray());

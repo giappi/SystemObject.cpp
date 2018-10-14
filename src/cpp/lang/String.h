@@ -1,7 +1,6 @@
 #pragma once
 #include "_typedef.h"
 #include "Object.h"
-#include <string>
 
 class String:
     public Object
@@ -96,6 +95,8 @@ public:
      */
     virtual String      toString() const override;
 
+private:
+    virtual void        updateLength();
 
 public:
 	/* length or number of characters */
@@ -103,7 +104,7 @@ public:
 
 private:
     usize               _length = 0;
-	std::string         _value = "";
+	void*               _value = nullptr;
 	byte                _tmp;
 };
 

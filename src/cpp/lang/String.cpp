@@ -1,26 +1,44 @@
 #include "cpp/lang/String.h"
-#include <iostream>
+#include <string>
+
+typedef std::string StdString;
+
+inline void*                    CREATE_STRING(const char* STR_VALUE)
+{
+    return (new StdString(STR_VALUE));
+}
+
+inline void                     DELETE_STRING(void* VOID_PTR)
+{
+    delete (StdString*)VOID_PTR;
+}
+
+inline StdString&             STRING(void* VOID_PTR)
+{
+    return *((StdString*)VOID_PTR);
+}
 
 String::String() : length(_length)
 {
-    _value  = "";
-    _length = _value.length();
+    _value  = CREATE_STRING("");
+    updateLength();
 }
 
 String::String(const char* str) : length(_length)
 {
-    _value  = str;
-    _length = _value.length();
+    _value  = CREATE_STRING(str);
+    updateLength();
 }
 
 String::String(const String& str) : length(_length)
 {
-    _value   = str;
-    _length = _value.length();
+    _value   = CREATE_STRING(str.toByteArray());
+    updateLength();
 }
 
 String::~String()
 {
+    DELETE_STRING(_value);
 }
 
 boolean String::equals(const String& object) const
@@ -36,30 +54,30 @@ String String::operator+(const String& str) const
 
 char String::operator[](usize index) const
 {
-    return _value[index];
+    return STRING(_value)[index];
 }
 
 
 char& String::operator[](usize index)
 {
-    return _value[index];
+    return STRING(_value)[index];
 }
 
 String::operator char*() const
 {
-    return (char*) _value.c_str();
+    return (char*) STRING(_value).c_str();
 }
 
 String::operator const char*() const
 {
-    return (const char*) _value.c_str();
+    return (const char*) STRING(_value).c_str();
 }
 
 
 
 byte String::charAt(usize index) const
 {
-	return  index < _length ? _value[index] : '\0';
+	return  index < _length ? STRING(_value)[index] : '\0';
 }
 
 
@@ -71,7 +89,7 @@ usize String::indexOf(String str) const
 
 usize String::indexOf(String str, usize fromIndex) const
 {
-    return _value.find(str.toByteArray(), fromIndex);
+    return STRING(_value).find(str.toByteArray(), fromIndex);
 }
 
 
@@ -84,10 +102,10 @@ String String::trim() const
 
 String String::toLowerCase() const
 {
-	String str = "";
+	String str = *this;
 	for (register usize i = 0; i < str.length; i++)
 	{
-		str[i] += _value[i] > '@' && _value[i] < '[' ? ('a'-'A') : 0;
+		str[i] += STRING(_value)[i] > '@' && STRING(_value)[i] < '[' ? ('a'-'A') : 0;
 	}
 	return str;
 };
@@ -95,17 +113,17 @@ String String::toLowerCase() const
 
 String String::toUpperCase() const
 {
-	String str = "";
+	String str = *this;
 	for (register usize i = str.length; i-- > 0;)
 	{
-		str[i] -= _value[i] > '`' && _value[i] < '{' ? ('a'-'A') : 0;
+		str[i] -= STRING(_value)[i] > '`' && STRING(_value)[i] < '{' ? ('a'-'A') : 0;
 	}
 	return str;
 }
 
 const byte* String::toByteArray() const
 {
-	return (const byte*)_value.c_str();
+	return (const byte*)STRING(_value).c_str();
 }
 
 String String::substr(usize start, usize length) const
@@ -121,4 +139,9 @@ String String::substring(usize start, usize end = -1) const
 String String::toString() const
 {
     return *this;
+}
+
+void String::updateLength()
+{
+    _length = STRING(_value).length();
 }
