@@ -105,7 +105,7 @@ String String::toUpperCase() const
 
 const byte* String::toByteArray() const
 {
-	return (byte*)_value.c_str();
+	return (const byte*)_value.c_str();
 }
 
 String String::substr(usize start, usize length) const

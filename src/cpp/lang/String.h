@@ -10,7 +10,7 @@ public:
 	String();
 
 	String(const char* str);
-	~String();
+	virtual ~String();
 
 	String(const String &str);
 

@@ -9,7 +9,7 @@ class Object
 {
 public:
 	Object();
-	~Object();
+	virtual ~Object();
     /**
      * Compare if two Objects are the same
      * @param object another Object to compare to this
