@@ -13,8 +13,8 @@
 class Debug
 {
 public:
-    template<class ... Args>
-    static void printf(const byte* formated, Args... args);
+
+    static void log(const char* formated, ...);
 };
 
 #endif /* DEBUG_H */

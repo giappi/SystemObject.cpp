@@ -58,7 +58,6 @@ public:
      * Get length of this String
      * @return length of this String
      */
-
     virtual usize       getLength() const;
     /**
      * get position of `str` in String, return length of this String if not found

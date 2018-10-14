@@ -13,6 +13,7 @@ file(
         GLOB SOURCES 
         "${PROJECT_SOURCE_DIR}/src/cpp/lang/*.cpp" 
         "${PROJECT_SOURCE_DIR}/src/*.cpp" 
+        "${PROJECT_SOURCE_DIR}/src/utils/*.cpp" 
 )
 
 add_executable(system_object_cpp ${SOURCES})
