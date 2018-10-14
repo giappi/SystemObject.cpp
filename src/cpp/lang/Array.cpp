@@ -27,7 +27,7 @@ Array<T>::Array(std::initializer_list<T> list) : length(_length)
 
 /* set item in at index */
 template <class T>
-T Array<T>::operator [](int32 index) const
+T Array<T>::operator [](const usize index) const
 {
     if (index < 0 || index >= length)
     {
@@ -38,7 +38,7 @@ T Array<T>::operator [](int32 index) const
 
 /* get item at index */
 template <class T>
-T & Array<T>::operator [](int32 index)
+T & Array<T>::operator [](const usize index)
 {
     if (index < 0 || index >= length)
     {
@@ -48,11 +48,25 @@ T & Array<T>::operator [](int32 index)
     return _value[index];
 }
 
+template<class T>
+boolean Array<T>::exists(const T& element)
+{
+    return false;
+}
+
+
 template <class T>
 T Array<T>::getElementAt(int index)
 {
     return (*this)[index];
 }
+
+template<class T>
+usize Array<T>::getLength() const
+{
+    return _length;
+}
+
 
 template <class T>
 uint32 Array<T>::push(T item)

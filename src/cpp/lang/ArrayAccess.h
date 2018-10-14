@@ -19,14 +19,14 @@ public:
      * @param index index of element in this Array
      * @return the element at the index
      */
-	virtual E        operator [](usize index) const = 0;
+	virtual E        operator [](const usize index) const = 0;
 
     /**
      * Set element in Array at index
      * @param index index of element in this Array
      * @return the element at the index
      */
-	virtual E&       operator [](usize index) = 0;
+	virtual E&       operator [](const usize index) = 0;
 
     /**
      * Check if element exists in Array
@@ -35,7 +35,12 @@ public:
      */
     virtual boolean  exists(const E& element) = 0;
 
-private:
+    /**
+     * Get length of this Array
+     * @return length of this Array
+     */
+    virtual usize    getLength() const = 0;
+
 
 };
 

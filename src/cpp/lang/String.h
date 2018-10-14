@@ -26,14 +26,14 @@ public:
      * @param index index of a char in this String
      * @return the char at the index
      */
-	virtual char        operator [](usize index) const override;
+	virtual char        operator [](const usize index) const override;
 
     /**
      * Set character in String at index
      * @param index index of a char in this String
      * @return the char at the index
      */
-	virtual char&       operator [](usize index) override;
+	virtual char&       operator [](const usize index) override;
 
     /**
      * Concatenate two String into one String
@@ -47,7 +47,7 @@ public:
      * @param index index of a char in this String
      * @return the char at the index
      */
-	virtual char        charAt(usize index) const;
+	virtual char        charAt(const usize index) const;
 
     /**
      * Check if this String equals with another
@@ -66,7 +66,7 @@ public:
      * Get length of this String
      * @return length of this String
      */
-    virtual usize       getLength() const;
+    virtual usize       getLength() const override;
     /**
      * get position of `str` in String, return length of this String if not found
      * @param str a text to search in this String
@@ -83,7 +83,7 @@ public:
      * @return position of `str` in this String
      */
 
-    virtual usize       indexOf(String str, usize fromIndex) const;
+    virtual usize       indexOf(String str, const usize fromIndex) const;
 
     /**
      * Get index of last character in this String
@@ -145,7 +145,7 @@ public:
      * @param length the length of substring
      * @return the specified substring
      */
-	virtual String      substr(usize from, usize length) const;
+	virtual String      substr(const usize from, const usize length) const;
 
 	/**
      * Take a new string that is a substring of this string by given index
@@ -154,13 +154,13 @@ public:
      * @return the specified substring
      */
 
-	virtual String      substring(usize begin, usize end) const;
+	virtual String      substring(const usize begin, const usize end) const;
 	/**
      * Take a new string that is a substring of this string from given index to end of String
      * @param begin The begining index
      * @return the specified substring
      */
-    virtual String      substring(usize begin) const;
+    virtual String      substring(const usize begin) const;
 
     /**
      * Convert this String to String

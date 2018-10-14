@@ -70,13 +70,13 @@ String String::operator+(const String& __another) const
     return String((STRING(this->_value) + STRING(__another._value)).c_str());
 }
 
-char String::operator[](usize index) const
+char String::operator[](const usize index) const
 {
     return STRING(_value)[index];
 }
 
 
-char& String::operator[](usize index)
+char& String::operator[](const usize index)
 {
     return STRING(_value)[index];
 }
@@ -88,7 +88,7 @@ String::operator const char*() const
 }
 
 
-char String::charAt(usize index) const
+char String::charAt(const usize index) const
 {
 	return  index < this->getLength() ? STRING(_value)[index] : '\0';
 }
@@ -99,7 +99,7 @@ usize String::indexOf(String str) const
     return this->indexOf(str, 0);
 };
 
-usize String::indexOf(String str, usize fromIndex) const
+usize String::indexOf(String str, const usize fromIndex) const
 {
     auto std_string_index = STRING(_value).find(str.toCharArray(), fromIndex);
     if(std_string_index == StdString::npos)
@@ -191,17 +191,17 @@ const char* String::toCharArray() const
 }
 
 
-String String::substr(usize __begin, usize __length) const
+String String::substr(const usize __begin, const usize __length) const
 {
 	return STRING(_value).substr(__begin, __length).c_str();
 };
 
-String String::substring(usize __begin, usize __end) const
+String String::substring(const usize __begin, const usize __end) const
 {
 	return this->substr(__begin, __end - __begin);
 };
 
-String String::substring(usize __begin) const
+String String::substring(const usize __begin) const
 {
     return this->substr(__begin, this->getLength());
 }

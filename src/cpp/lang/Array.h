@@ -1,28 +1,27 @@
 #pragma once
 #include "cpp/lang/Object.h"
+#include "cpp/lang/ArrayAccess.h"
 #include <initializer_list>
 #include <vector>
 
 template <class T>
 class Array :
-	public Object
+	public Object,
+    public ArrayAccess<T>
 {
 public:
 
 	Array();
 	Array(std::initializer_list<T> list);
 
-	/* set item in at index */
-	T operator [](int32 index) const;
 
-	/* get item at index */
-	T & operator [](int32 index);
-
-	T getElementAt(int index);
-
-	uint32 push(T item);
-
-	T pop();
+	virtual T           operator [](const usize index) const override;
+	virtual T &         operator [](const usize index) override;
+    virtual boolean     exists(const T& element) override;
+    virtual usize       getLength() const override;
+	virtual T           getElementAt(int index);
+	virtual uint32      push(T item);
+	T                   pop();
 
 	virtual ~Array();
 
