@@ -1,5 +1,7 @@
 #include "cpp/lang/String.h"
 #include <string>
+#include <algorithm>
+#include "utils/Debug.h"
 
 typedef std::string StdString;
 const char CHAR_SPACE = ' ';
@@ -110,6 +112,26 @@ usize String::indexOfEndString() const
 usize String::getLength() const
 {
     return STRING(_value).length();
+}
+
+
+String String::replaceN(const String &__replaceFrom, const String &__replaceTo, const usize __n)
+{
+    String tmp    = *this;
+    usize begin   = tmp.indexOf(__replaceFrom);
+    usize length  = __replaceFrom.getLength();
+    for(usize i = 0; i < __n && begin < tmp.getLength(); ++i)
+    {
+        STRING(tmp._value).replace(begin, length, __replaceTo.toCharArray()).c_str();
+        begin  = tmp.indexOf(__replaceFrom);
+    }
+    return tmp;
+}
+
+
+String String::replaceAll(const String &__replaceFrom, const String &__replaceTo)
+{
+    return this->replaceN(__replaceFrom, __replaceTo, this->getLength());
 }
 
 

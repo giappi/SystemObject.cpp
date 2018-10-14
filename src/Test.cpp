@@ -13,7 +13,7 @@ void testInteger()
 }
 void testString()
 {
-	String s = "    (The quick brown \"Fox\" jumps over the lazy \"Dog\")  ";
+	String s = "    (The quick brown \"Fox\" jumps over the lazy \"Dog\")    ";
     Debug::log("Length: %u", s.length);
 	// test copy constructor
 	const char* t = s.toCharArray();
@@ -21,6 +21,8 @@ void testString()
 	Debug::log("toLowerCase:   '%s'", s.toLowerCase().toCharArray());
 	Debug::log("toUpperCase:   '%s'", s.toUpperCase().toCharArray());
 	Debug::log("Trim   Text:   '%s'", s.trim().toCharArray());
+    Debug::log("RepalceText:   '%s'", s.replaceN("Fox", "Firefox", 2).toCharArray());
+    Debug::log("Repalce All:   '%s'", s.replaceAll("o", "[*]").toCharArray());
     Debug::log("Origin Text:   '%s'", s.toCharArray());
 
     Debug::log("");

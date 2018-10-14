@@ -4,6 +4,7 @@ typedef bool                  boolean;
 typedef char                  int8;
 typedef unsigned char         byte;
 typedef int                   int32;
+typedef long long             int64;
 typedef size_t                usize;
 typedef unsigned char         uint8;
 typedef unsigned int          uint32;

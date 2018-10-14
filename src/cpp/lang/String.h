@@ -83,10 +83,28 @@ public:
      */
     virtual usize       indexOfEndString() const;
 
+    /**
+     * Replace a substring by another string by first N matches
+     * @param replaceFrom the substring need replace
+     * @param replaceTo the string will be replace for 'replaceFrom'
+     * @param n_times the number of occurrences
+     * @return new replaced String
+     */
+    virtual String      replaceN(const String &replaceFrom, const String &replaceTo, const usize n_times);
+
+    /**
+     * Replace a substring by another string
+     * @param replaceFrom the substring need replace
+     * @param replaceTo the string will be replace for 'replaceFrom'
+     * @param n_times the number of occurrences
+     * @return new replaced String
+     */
+    virtual String      replaceAll(const String &replaceFrom, const String &replaceTo);
 	/**
      * Return a new String with all extra whitespaces from begining and ending removed
      * @return the trimed String
      */
+
 	virtual String      trim() const;
 
 	/**
