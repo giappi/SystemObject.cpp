@@ -1,20 +1,21 @@
 #ifndef _TYPEDEFH
 #define _TYPEDEFH
 
-#include <cstdint>
+#include <stdint.h>
+#include <stddef.h>
 
 typedef bool                  boolean;
-typedef std::int8_t           int8;
+typedef int8_t                int8;
 typedef unsigned char         byte;
-typedef std::int32_t          int32;
-typedef std::int64_t          int64;
-typedef std::size_t           usize;
-typedef std::uint8_t          uint8;
-typedef std::uint32_t         uint32;
-typedef std::uint64_t         uint64;
+typedef int32_t               int32;
+typedef int64_t               int64;
+typedef size_t                usize;
+typedef uint8_t               uint8;
+typedef uint32_t              uint32;
+typedef uint64_t              uint64;
 
 
-const   std::nullptr_t        null = nullptr;
+#define null                  nullptr;
 
 #if 0
 #include "utils/SharedPointer.h"

@@ -1,6 +1,5 @@
 #pragma once
 #include "cpp/lang/Object.h"
-#include <cstring>
 #include <initializer_list>
 #include <vector>
 

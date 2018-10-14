@@ -1,8 +1,6 @@
-#include <cpp/lang/Integer.h>
-#include <cpp/lang/String.h>
-#include <cpp/lang/Array.h>
-#include <stdio.h>
-
+#include "cpp/lang/Integer.h"
+#include "cpp/lang/String.h"
+#include "cpp/lang/Array.h"
 #include "utils/Debug.h"
 
 void testInteger()
