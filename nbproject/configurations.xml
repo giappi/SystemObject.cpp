@@ -8,6 +8,8 @@
             <in>Array.cpp</in>
             <in>ArrayAccess.cpp</in>
             <in>ArrayAccess.h</in>
+            <in>Function.cpp</in>
+            <in>Function.h</in>
             <in>Integer.cpp</in>
             <in>Iterable.cpp</in>
             <in>Iterable.h</in>
@@ -88,6 +90,10 @@
       <item path="src/cpp/lang/ArrayAccess.cpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/cpp/lang/ArrayAccess.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/cpp/lang/Function.cpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/cpp/lang/Function.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/cpp/lang/Integer.cpp" ex="false" tool="1" flavor2="8">
         <ccTool flags="1">

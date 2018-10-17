@@ -2,6 +2,7 @@
 #include "cpp/lang/String.h"
 #include "cpp/lang/Array.h"
 #include "utils/Debug.h"
+#include "cpp/lang/Function.h"
 
 void testInteger()
 {
@@ -55,8 +56,38 @@ void testArray()
 	int c = 0;
 }
 
+void FunctionTest()
+{
+    Debug::log("Function.() OK!");
+}
+
+int sumAB(int a, int b)
+{
+    return a + b;
+}
+
+#include <functional>
+void testFunction()
+{
+    typedef void (&VFV)();
+    VFV fx1 = FunctionTest;
+    fx1();
+    Function<int(int, int)> fx2 = sumAB;
+    auto fx3 = fx2;
+    auto c = fx3(3, 4);
+    Debug::log("fx3(%d, %d) -> %d", 3, 4, c);
+
+    // test lambda
+    //Function<int(int, int)> f4 = [](int a, int b) -> int { return a * b; };
+    //f4(4, 6);
+
+
+}
+
+
 int main()
 {
-	testString();
+	//testString();
+    testFunction();
 	int a = 0;
 }
