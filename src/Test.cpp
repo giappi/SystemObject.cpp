@@ -74,12 +74,11 @@ void testFunction()
     fx1();
     Function<int(int, int)> fx2 = sumAB;
     auto fx3 = fx2;
-    auto c = fx3(3, 4);
-    Debug::log("fx3(%d, %d) -> %d", 3, 4, c);
+    Debug::log("fx3(%d, %d) -> %d", 3, 4, fx3(3, 4));
 
     // test lambda
-    //Function<int(int, int)> f4 = [](int a, int b) -> int { return a * b; };
-    //f4(4, 6);
+    Function<int(int, int)> f4 = [](int a, int b) -> int { return a * b; };
+    Debug::log("fx4(%d, %d) -> %d", 3, 4, f4(3, 4));
 
 
 }

@@ -8,30 +8,100 @@
 #ifndef FUNCTION_H
 #define FUNCTION_H
 
-template <class Fx> class Function;
+#define extend :
 
+template <class Fx>
+class Function;
 
 template <class ReturnType, class... Args>
 class Function<ReturnType(Args...)>
 {
-    typedef ReturnType (Fx)(Args...);
-public:
-    Function(Fx fx)
+
+private:
+
+    /**
+     * Generic Function
+     */
+    class Fn
     {
-        this->_fx = fx;
+
+    public:
+        /**
+         * Operator call function
+         * @param args arguments
+         * @return ReturnType
+         */
+        virtual ReturnType operator()(Args... args) = 0;
+
+    };
+
+    /**
+     * Specific Function
+     */
+    template <class T>
+    class Fx
+        extend public Fn
+    {
+
+    public:
+
+        /**
+         * Create a specific function
+         * @param function
+         */
+        Fx(T function): _fx_with_args(function){};
+
+        /**
+         * Operator call funtion(args...)
+         * @param args arguments
+         * @return ReturnType
+         */
+        ReturnType operator()(Args... args) override
+        {
+            return _fx_with_args(args...);
+        }
+
+    private:
+
+        T _fx_with_args;
+
+    };
+
+public:
+
+    /**
+     * Create a Function that is callable
+     * @param function
+     */
+    template <class CallableType>
+    Function(CallableType function)
+    {
+        this->_fx = new Fx<CallableType>(function);
     }
 
-
+    /**
+     * Operator for call Funtion(args...)
+     * @param args arguments
+     * @return ReturnType
+     */
     ReturnType operator()(Args... args)
     {
-        return _fx(args...);
+        return _fx->operator ()(args...);
+    }
+
+    /**
+     * Destroy and clean up everything
+     */
+    ~Function()
+    {
+        delete this->_fx;
     }
 
 private:
-    Fx* _fx;
+
+    Fn* _fx;
 
 };
-
 
 
 #endif /* FUNCTION_H */
