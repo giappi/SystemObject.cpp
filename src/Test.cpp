@@ -66,9 +66,23 @@ int sumAB(int a, int b)
     return a + b;
 }
 
+class A
+{
+public:
+    static int add(int a, int b)
+    {
+        return a + b;
+    }
+    double multiply(double a, double b)
+    {
+        return a * b;
+    }
+};
+
 #include <functional>
 void testFunction()
 {
+
     typedef void (&VFV)();
     VFV fx1 = FunctionTest;
     fx1();
@@ -79,6 +93,17 @@ void testFunction()
     // test lambda
     Function<int(int, int)> f4 = [](int a, int b) -> int { return a * b; };
     Debug::log("fx4(%d, %d) -> %d", 3, 4, f4(3, 4));
+
+    // test static method class
+    Function<int(int, int)> fx5 = A::add;
+    Debug::log("fx5(%d, %d) -> %d", 5, 8, fx5(5, 8));
+    Debug::log("fx5.getName() -> '%s'", (const char*) fx5.getName());
+
+
+    // test method class
+    //A objectA = A();
+    //Function<double(double, double)> fx6 = &A::multiply;
+    //Debug::log("fx5(%d, %d) -> %d", 5, 8, fx6(5, 8));
 
 
 }

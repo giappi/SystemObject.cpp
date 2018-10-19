@@ -6,13 +6,7 @@
         <df name="cpp">
           <df name="lang">
             <in>Array.cpp</in>
-            <in>ArrayAccess.cpp</in>
-            <in>ArrayAccess.h</in>
-            <in>Function.cpp</in>
-            <in>Function.h</in>
             <in>Integer.cpp</in>
-            <in>Iterable.cpp</in>
-            <in>Iterable.h</in>
             <in>Number.cpp</in>
             <in>Object.cpp</in>
             <in>String.cpp</in>
@@ -31,7 +25,7 @@
       <itemPath>nbproject/private/launcher.properties</itemPath>
     </logicalFolder>
   </logicalFolder>
-  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceFolderFilter>^(####)$</sourceFolderFilter>
   <sourceRootList>
     <Elem>.</Elem>
   </sourceRootList>
@@ -87,21 +81,9 @@
         <ccTool flags="1">
         </ccTool>
       </item>
-      <item path="src/cpp/lang/ArrayAccess.cpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/cpp/lang/ArrayAccess.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/cpp/lang/Function.cpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/cpp/lang/Function.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="src/cpp/lang/Integer.cpp" ex="false" tool="1" flavor2="8">
         <ccTool flags="1">
         </ccTool>
-      </item>
-      <item path="src/cpp/lang/Iterable.cpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/cpp/lang/Iterable.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/cpp/lang/Number.cpp" ex="false" tool="1" flavor2="8">
         <ccTool flags="1">

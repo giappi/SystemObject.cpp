@@ -12,7 +12,7 @@ Object::~Object()
 
 boolean Object::equals(const Object& object) const
 {
-    // TODO: Implement
+    // @TODO: Implement
 	return this == &object;  // !!!WRONG
 }
 
@@ -23,12 +23,12 @@ String Object::getName() const
 
 usize Object::hashCode() const
 {
-    // TODO: Implement
+    // @TODO: Implement
     return 0; // !!!WRONG
 }
 
 String Object::toString() const
 {
-    return "<String>";
+    return "<Object>";
 }
 
