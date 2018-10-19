@@ -7,6 +7,7 @@
 
 #ifndef FUNCTION_H
 #define FUNCTION_H
+#include "cpp/lang/Object.h"
 
 #define extend :
 
@@ -15,6 +16,7 @@ class Function;
 
 template <class ReturnType, class... Args>
 class Function<ReturnType(Args...)>
+    extend public Object
 {
 
 private:
