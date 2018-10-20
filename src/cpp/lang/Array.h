@@ -25,11 +25,11 @@ public:
 	virtual uint32      push(T item);
 	T                   pop();
 
-    inline T* begin()
+    inline T* begin() override
     {
         return &_value[0];
     };
-    inline T* end()
+    inline T* end() override
     {
         return &_value[_length];
     };

@@ -2,11 +2,6 @@
 #include <exception>
 #include <stdexcept>
 
-template class Array<boolean>;
-template class Array<int32>;
-template class Array<uint32>;
-template class Array<float>;
-template class Array<double>;
 
 template <class T>
 Array<T>::Array() : length(_length)
@@ -105,3 +100,12 @@ Array<T>::~Array()
 {
     delete[] _value;
 };
+
+// @important: always on bottom
+template class Array<boolean>;
+template class Array<int32>;
+template class Array<int64>;
+template class Array<uint32>;
+template class Array<uint64>;
+template class Array<float>;
+template class Array<double>;

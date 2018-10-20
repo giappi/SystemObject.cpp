@@ -51,7 +51,9 @@ private:
          * Create a specific function
          * @param function
          */
-        Fx(T function): _fx_with_args(function){};
+        Fx(T function): _fx_with_args(function)
+        {
+        };
 
         /**
          * Operator call funtion(args...)
@@ -94,7 +96,7 @@ public:
     /**
      * Destroy and clean up everything
      */
-    ~Function()
+    virtual ~Function()
     {
         delete this->_fx;
     }
