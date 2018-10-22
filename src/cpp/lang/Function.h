@@ -34,6 +34,11 @@ private:
          * @return ReturnType
          */
         virtual ReturnType operator()(Args... args) = 0;
+        /**
+         * Make another Fn from this
+         * @return an other Fn as pointer
+         */
+        virtual Fn* clone() = 0;
 
     };
 
@@ -64,6 +69,15 @@ private:
         {
             return _fx_with_args(args...);
         }
+        /**
+         * Make a duplicate version of this Fx
+         * @return an other Fn as pointer
+         */
+        Fn* clone() override
+        {
+            return new Fx<T>(*this);
+        };
+
 
     private:
 
@@ -84,8 +98,14 @@ public:
     }
 
     /**
-     * @TODO: Implement copy constructor and assignment operator
+     * Create new Function by copy from another: `Function b = a;`
+     * @param __fx another Function
      */
+    Function(const Function<ReturnType(Args...)>& __fx)
+    {
+        Fn* fx1 = __fx._fx;
+        this->_fx = fx1->clone();
+    }
 
     /**
      * Operator for call Funtion(args...)
@@ -102,9 +122,7 @@ public:
      */
     virtual ~Function()
     {
-        // @TODO: Implement copy constructor and assignment operator
-        // to fix memory corruption when delete
-        //delete this->_fx;
+        delete this->_fx;
     }
 
 private:
