@@ -64,6 +64,16 @@ boolean String::exists(const char& ch)
     return (STRING(_value)).find(ch) != StdString::npos;
 }
 
+String& String::operator=(const String& another)
+{
+    if(&another != this)
+    {
+        this->_length = another._length;
+        this->_value  = new StdString((*(StdString*)another._value).c_str());
+    }
+    return *this;
+}
+
 
 String String::operator+(const String& __another) const
 {
