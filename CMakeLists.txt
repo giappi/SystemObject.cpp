@@ -15,6 +15,7 @@ SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} \
     -Wno-delete-non-virtual-dtor \
     -Wno-deprecated-register \
     -Wno-overloaded-virtual \
+    -Wno-unknown-pragmas \
     -Wno-unused-private-field \
     -Wno-unused-value \
     -Wno-unused-variable \

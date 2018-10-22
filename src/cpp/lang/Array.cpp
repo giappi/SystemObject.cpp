@@ -1,111 +1,83 @@
 #include "cpp/lang/Array.h"
 #include <exception>
 #include <stdexcept>
+#include <vector>
+#include <algorithm>
 
+typedef std::vector<ArrayBase::E> StdVector;
 
-template <class T>
-Array<T>::Array() : length(_length)
+#pragma region HELP_FUNCTIONS
+
+inline StdVector&               VECTOR(void* __void_pointer)
+{
+    return *((StdVector*)__void_pointer);
+}
+
+#pragma endregion HELP_FUNCTIONS
+
+void ArrayBase::_new()
+{
+    this->_value = new StdVector();
+    _updateLength();
+}
+
+ArrayBase::ArrayBase() : length(_length)
 {
     _length = 0;
-};
-
-template <class T>
-Array<T>::Array(std::initializer_list<T> list) : length(_length)
-{
-    _length = 0;
-    _value = new T[list.size()];
-    for (const T e : list)
-    {
-        _value[_length++] = (e);
-    }
 }
 
-/* set item in at index */
-template <class T>
-T Array<T>::operator [](const usize index) const
+boolean ArrayBase::_exists(const E& __element)
 {
-    if (index < 0 || index >= length)
-    {
-        throw std::runtime_error("java.lang.Exception: Index out of bound.");
-    }
-    return _value[index];
+    auto v = VECTOR(_value);
+    return std::find(v.begin(), v.end(), __element) != v.end();
 }
 
-/* get item at index */
-template <class T>
-T & Array<T>::operator [](const usize index)
+ArrayBase::E ArrayBase::_get(const usize __index) const
 {
-    if (index < 0 || index >= length)
-    {
-        throw std::out_of_range("java.lang.Exception: Index out of bound.");
-    }
-
-    return _value[index];
+    return VECTOR(_value)[__index];
 }
 
-template<class T>
-boolean Array<T>::exists(const T& element)
+ArrayBase::E ArrayBase::_getElementAt(const int __index)
 {
-    return false;
+    return _get(__index);
 }
 
-
-template <class T>
-T Array<T>::getElementAt(int index)
+ArrayBase::E ArrayBase::_pop()
 {
-    return (*this)[index];
+    auto e = VECTOR(_value).back();
+    VECTOR(_value).pop_back();
+    return e;
 }
 
-template<class T>
-usize Array<T>::getLength() const
+usize ArrayBase::_push(E item)
 {
+    VECTOR(_value).push_back(item);
+    _updateLength();
     return _length;
 }
 
-
-template <class T>
-uint32 Array<T>::push(T item)
+ArrayBase::E& ArrayBase::_reference(const usize __index)
 {
-    _length++;
-    T* _value1 = new T[_length];
-    _value1[_length - 1] = item;
-    for (int i = 0; i < _length-1; i++)
-    {
-        _value1[i] = _value[i];
-    }
-
-    delete[] _value;
-    _value = _value1;
-    return _length;
+    return (VECTOR(_value)[__index]);
 }
 
-template <class T>
-T Array<T>::pop()
+void ArrayBase::_set(const usize index, E element)
 {
-    T item = _value[_length - 1];
-    T* _value1 = new T[_length - 1];
-    _length--;
-    for (int i = 0; i < _length - 1; i++)
-    {
-        _value1[i] = _value[i];
-    }
 
-    delete[] _value;
-    _value = _value1;
-    return item;
 }
 
-template <class T>
-Array<T>::~Array()
+usize ArrayBase::_getLength()
 {
-    delete[] _value;
-};
+    return VECTOR(_value).size();
+}
 
-// @important: always on bottom
-template class Array<boolean>;
-template class Array<int32>;
-template class Array<int64>;
-template class Array<uint32>;
-template class Array<uint64>;
-template class Array<float>;
-template class Array<double>;
+
+void ArrayBase::_updateLength()
+{
+    _length = _getLength();
+}
+
+ArrayBase::~ArrayBase()
+{
+    delete (StdVector*) _value;
+}

@@ -3,45 +3,95 @@
 #include "cpp/lang/ArrayAccess.h"
 #include "Iterable.h"
 #include <initializer_list>
-#include <vector>
+
+class ArrayBase :
+    public Object
+{
+
+public:
+
+    typedef byte* E;
+
+    ArrayBase();
+    ~ArrayBase();
+protected:
+
+    void                    _new();
+	E                       _get(const usize index) const;
+    E&                      _reference(const usize index);
+    void                    _set(const usize index, E element);
+    boolean                 _exists(const E& element);
+	E                       _getElementAt(const int index);
+	usize                   _push(E item);
+	E                       _pop();
+    usize                   _getLength();
+    void                    _updateLength();
+
+public:
+	const usize &length;
+
+protected:
+	void*  _value = null;
+    usize  _element_size = 1;
+	usize  _length = 0;
+};
+
 
 template <class T>
 class Array :
-	public Object,
-    public ArrayAccess<T>,
-    public Iterable<T>
+	public ArrayBase,
+    public ArrayAccess<T>
 {
 public:
 
-	Array();
-	Array(std::initializer_list<T> list);
-
-
-	virtual T           operator [](const usize index) const override;
-	virtual T &         operator [](const usize index) override;
-    virtual boolean     exists(const T& element) override;
-    virtual usize       getLength() const override;
-	virtual T           getElementAt(int index);
-	virtual uint32      push(T item);
-	T                   pop();
-
-    inline T* begin() override
+	Array()
     {
-        return &_value[0];
+        this->_new();
     };
-    inline T* end() override
+	Array(std::initializer_list<T> list)
     {
-        return &_value[_length];
+        this->_new();
+        for(T e : list)
+        {
+            this->_push( (byte*) new T(e));
+        }
+    };
+
+
+	virtual T               operator [](const usize index) const override
+    {
+        return *(T*)( (byte*)_get(index));
+    };
+
+	virtual T&              operator [](const usize index) override
+    {
+        return *(T*)(_reference(index));
+    };
+
+    virtual boolean         exists(const T& element) override
+    {
+        return _exists( (byte*)&element);
+    };
+
+    virtual usize           getLength() const override;
+
+	virtual T               getElementAt(const int index)
+    {
+        return *(T*)(_getElementAt(index));
+    };
+
+	virtual uint32          push(T item)
+    {
+        return _push((byte*)&item);
+    };
+
+	T                       pop()
+    {
+        return *(T*)_pop();
     };
 
 	virtual ~Array();
 
-public:
-	/* length or number of items */
-	const uint32 &length;
-private:
-	T* _value = NULL;
-	T _tmp;
-	uint32 _length = 0;
+
 };
 
