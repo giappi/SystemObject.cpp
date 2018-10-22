@@ -15,7 +15,7 @@ typedef uint32_t              uint32;
 typedef uint64_t              uint64;
 
 
-#define null                  nullptr;
+#define null                  nullptr
 
 #if 0
 #include "utils/SharedPointer.h"
