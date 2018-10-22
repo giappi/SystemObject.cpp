@@ -10,9 +10,7 @@
 #define DEBUG_H
 #include "_typedef.h"
 #include "cpp/lang/String.h"
-#include <tuple>
 #include <vector>
-#include <iostream>
 
 
 class Debug
@@ -36,6 +34,8 @@ public:
     template <class... Args>
     static void logf(String formated, Args... args)
     {
+        // fix bug: log was wrong: _tmp_logf_arguments must clear before use
+        _tmp_logf_arguments.clear();
         std::vector<String> arguments = argumentsToString(args...);
         logfv(formated, arguments);
     };
