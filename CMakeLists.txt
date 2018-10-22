@@ -12,12 +12,13 @@ SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall")
 
 ## disable bellow warnings
 SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} \
+    -Wno-delete-non-virtual-dtor \
+    -Wno-deprecated-register \
+    -Wno-overloaded-virtual \
     -Wno-unused-private-field \
+    -Wno-unused-value \
     -Wno-unused-variable \
-    -Wno-overloaded-virtual \
-    -Wno-overloaded-virtual \
-    -Wno-unused-value"
-)
+")
 
 include_directories( 
     "${PROJECT_SOURCE_DIR}/src"
