@@ -89,11 +89,10 @@ public:
             typedef void (&VFV)();
             VFV fx1 = FunctionTest;
             fx1();
+
             Function<int(int, int)> fx2 = sumAB;
-#pragma region TODO
- /** when uncomment this, String crash, its might out of memory */
             auto fx3 = fx2;
-#pragma endregion TODO
+
             Debug::log("fx3(%d, %d) -> %d", 3, 4, fx3(3, 4));
 
             // test lambda

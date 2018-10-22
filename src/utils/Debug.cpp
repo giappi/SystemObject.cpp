@@ -33,7 +33,6 @@ void Debug::logfv(String formated, std::vector<String> arguments)
 {
     for(String arg_i : arguments)
     {
-        std::cout << "args[i] -> " << arg_i << "\n";
         formated = formated.replaceN("{}", arg_i, 1);
     }
     Debug::log(formated.toCharArray());
