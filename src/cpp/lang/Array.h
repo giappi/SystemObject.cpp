@@ -3,6 +3,7 @@
 #include "cpp/lang/ArrayAccess.h"
 #include "Iterable.h"
 #include <initializer_list>
+#include "utils/Debug.h"
 
 class ArrayBase :
     public Object
@@ -24,7 +25,7 @@ protected:
 	E                       _getElementAt(const int index);
 	usize                   _push(E item);
 	E                       _pop();
-    usize                   _getLength();
+    usize                   _getLength() const;
     void                    _updateLength();
 
 public:
@@ -46,25 +47,28 @@ public:
 
 	Array()
     {
-        this->_new();
+        ArrayBase();
     };
+
 	Array(std::initializer_list<T> list)
     {
-        this->_new();
-        for(T e : list)
+        ArrayBase();
+        for(auto e : list)
         {
-            this->_push( (byte*) new T(e));
+            _push( (byte*) new T(e));
         }
     };
 
 
 	virtual T               operator [](const usize index) const override
     {
-        return *(T*)( (byte*)_get(index));
+        Debug::logf("-- operator [] get({}) = {}", index, *(T*)_get(index));
+        return *(T*)_get(index);
     };
 
 	virtual T&              operator [](const usize index) override
     {
+        Debug::logf("-- operator [] set({}) = {}", index, *(T*)_get(index));
         return *(T*)(_reference(index));
     };
 
@@ -73,7 +77,10 @@ public:
         return _exists( (byte*)&element);
     };
 
-    virtual usize           getLength() const override;
+    virtual usize           getLength() const override
+    {
+        return _getLength();
+    };
 
 	virtual T               getElementAt(const int index)
     {
@@ -82,16 +89,13 @@ public:
 
 	virtual uint32          push(T item)
     {
-        return _push((byte*)&item);
+        return _push((byte*) new T(item));
     };
 
 	T                       pop()
     {
         return *(T*)_pop();
     };
-
-	virtual ~Array();
-
 
 };
 

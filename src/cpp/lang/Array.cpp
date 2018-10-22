@@ -17,12 +17,13 @@ inline StdVector&               VECTOR(void* __void_pointer)
 
 void ArrayBase::_new()
 {
-    this->_value = new StdVector();
+    this->_value = new StdVector(0);
     _updateLength();
 }
 
 ArrayBase::ArrayBase() : length(_length)
 {
+    _new();
     _length = 0;
 }
 
@@ -46,11 +47,13 @@ ArrayBase::E ArrayBase::_pop()
 {
     auto e = VECTOR(_value).back();
     VECTOR(_value).pop_back();
+    _updateLength();
     return e;
 }
 
 usize ArrayBase::_push(E item)
 {
+
     VECTOR(_value).push_back(item);
     _updateLength();
     return _length;
@@ -66,7 +69,7 @@ void ArrayBase::_set(const usize index, E element)
 
 }
 
-usize ArrayBase::_getLength()
+usize ArrayBase::_getLength() const
 {
     return VECTOR(_value).size();
 }

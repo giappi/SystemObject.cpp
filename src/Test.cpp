@@ -51,13 +51,21 @@ public:
     static void testArray()
     {
         Array<int> a = { 1, 2, 4, 7, 8, 9, 0 };
-        a.length;
+        Debug::logf("a.length = {}", a.length);
         int y = a[3];
+        Debug::logf("a[3] = {}", y);
         a.push(1234);
+        Debug::logf("a.length = {}", a.length);
+        for(auto i = 0; i < a.length; i++)
+        {
+            Debug::logf("-- a[{}] = {}", i, a[i]);
+        }
         int last = a[a.length - 1];
+        Debug::logf("last = {}", last);
         int d = a.pop();
+        Debug::logf("a.pop() = {}", d);
         int length = a.length;
-        int c = 0;
+        Debug::logf("a.length = {}", length);
     }
 
     static void FunctionTest()
@@ -116,7 +124,9 @@ public:
 int main()
 {
 	//Test::testString();
-    Test::testFunction();
+    //Test::testFunction();
     Debug::logf("[{}, {}, {}, {}, {}, {}]", 13, 'C', true, 4.5, "const char* Hello");
+    Debug::logf("--{}--", true);
+    Test::testArray();
 	int a = 0;
 }
