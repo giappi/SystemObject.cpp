@@ -84,6 +84,10 @@ public:
     }
 
     /**
+     * @TODO: Implement copy constructor and assignment operator
+     */
+
+    /**
      * Operator for call Funtion(args...)
      * @param args arguments
      * @return ReturnType
@@ -98,7 +102,9 @@ public:
      */
     virtual ~Function()
     {
-        delete this->_fx;
+        // @TODO: Implement copy constructor and assignment operator
+        // to fix memory corruption when delete
+        //delete this->_fx;
     }
 
 private:
