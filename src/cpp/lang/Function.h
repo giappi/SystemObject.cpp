@@ -114,8 +114,22 @@ public:
      */
     ReturnType operator()(Args... args)
     {
-        return _fx->operator ()(args...);
+        ReturnType tmp;
+        if(_fx != null)
+        {
+            tmp = _fx->operator ()(args...);
+        }
+        else
+        {
+            tmp = ReturnType();
+        }
+        return tmp;
     }
+
+    /**
+     * Default contructor
+     */
+    Function(){}
 
     /**
      * Destroy and clean up everything
@@ -127,7 +141,7 @@ public:
 
 private:
 
-    Fn* _fx;
+    Fn* _fx = null;
 
 };
 
