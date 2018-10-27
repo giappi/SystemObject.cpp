@@ -107,12 +107,30 @@ public:
         this->_fx = fx1->clone();
     }
 
+    Function&   operator =(const Function& __another)
+    {
+        if(&__another != this)
+        {
+            Fn*    fx1 = __another._fx;
+            if(fx1 != null && this->_fx != null)
+            {
+                delete this->_fx;
+                this->_fx = fx1->clone();
+            }
+            else
+            {
+                this->_fx = null;
+            }
+        }
+        return *this;
+    }
+
     /**
      * Operator for call Funtion(args...)
      * @param args arguments
      * @return ReturnType
      */
-    ReturnType operator()(Args... args)
+    ReturnType  operator()(Args... args)
     {
         ReturnType tmp;
         if(_fx != null)
@@ -136,7 +154,11 @@ public:
      */
     virtual ~Function()
     {
-        delete this->_fx;
+        if(_fx != null)
+        {
+            delete this->_fx;
+            _fx = null;
+        }
     }
 
 private:

@@ -69,6 +69,11 @@ String& String::operator=(const String& another)
     if(&another != this)
     {
         this->_length = another._length;
+        if(this->_value != null)
+        {
+            delete (StdString*)this->_value;
+            this->_value = null;
+        }
         this->_value  = new StdString((*(StdString*)another._value).c_str());
     }
     return *this;
