@@ -50,6 +50,7 @@ public:
     static String valueToString(const uint8 x);
     static String valueToString(const uint32 x);
     static String valueToString(const uint64 x);
+    static String valueToString(const unsigned long long int x);
     static String valueToString(const float x);
     static String valueToString(const double x);
     static String valueToString(const long double x);

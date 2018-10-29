@@ -83,6 +83,12 @@ String Debug::valueToString(const uint64 x)
     return std::to_string(x).c_str();
 }
 
+String Debug::valueToString(const unsigned long long int x)
+{
+    return std::to_string(x).c_str();
+}
+
+
 String Debug::valueToString(const float x)
 {
     return std::to_string(x).c_str();
