@@ -8,6 +8,7 @@
 #ifndef FUNCTION_H
 #define FUNCTION_H
 #include "cpp/lang/Object.h"
+#include "cpp/memory/Memory.h"
 
 #define extend :
 
@@ -75,7 +76,8 @@ private:
          */
         Fn* clone() override
         {
-            return new Fx<T>(*this);
+            return Memory::allocate<Fx<T>>(*this);
+            //return new Fx<T>(*this);
         };
 
 
@@ -94,7 +96,8 @@ public:
     template <class CallableType>
     Function(CallableType function)
     {
-        this->_fx = new Fx<CallableType>(function);
+        this->_fx = Memory::allocate<Fx<CallableType>>(function);
+        //this->_fx = new Fx<CallableType>(function);
     }
 
     /**
@@ -104,23 +107,21 @@ public:
     Function(const Function<ReturnType(Args...)>& __fx)
     {
         Fn* fx1 = __fx._fx;
-        this->_fx = fx1->clone();
+        if(fx1 != null)
+        {
+            this->_fx = fx1->clone();
+        }
+        else
+        {
+            this->_fx = null;
+        }
     }
 
     Function&   operator =(const Function& __another)
     {
         if(&__another != this)
         {
-            Fn*    fx1 = __another._fx;
-            if(fx1 != null && this->_fx != null)
-            {
-                delete this->_fx;
-                this->_fx = fx1->clone();
-            }
-            else
-            {
-                this->_fx = null;
-            }
+            *this = Function(__another);
         }
         return *this;
     }
@@ -156,7 +157,7 @@ public:
     {
         if(_fx != null)
         {
-            delete this->_fx;
+            Memory::unallocate(this->_fx);
             _fx = null;
         }
     }
