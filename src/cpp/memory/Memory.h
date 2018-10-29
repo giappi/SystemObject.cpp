@@ -30,6 +30,14 @@ public:
         pointer = nullptr;
     }
 
+    template <class T>
+    static void unallocate(T*&& pointer)
+    {
+        __debug__log(Action::DELETE, sizeof(T), typeid(T).name(), "[r-value]");
+        delete pointer;
+        pointer = nullptr;
+    }
+
 private:
 
     enum class Action { NEW, DELETE};

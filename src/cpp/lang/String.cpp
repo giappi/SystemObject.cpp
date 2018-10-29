@@ -2,6 +2,7 @@
 #include <string>
 #include <algorithm>
 #include "utils/Debug.h"
+#include "cpp/memory/Memory.h"
 
 typedef std::string StdString;
 const char CHAR_SPACE = ' ';
@@ -10,12 +11,14 @@ const char CHAR_TAB   = '\t';
 #pragma region HELP_FUNCTIONS
 inline void*                    CREATE_STRING(const char* __const_char_array)
 {
-    return (new StdString(__const_char_array));
+    return Memory::allocate<StdString>(__const_char_array);
+    //return (new StdString(__const_char_array));
 }
 
 inline void                     DELETE_STRING(void* __void_pointer)
 {
-    delete (StdString*)__void_pointer;
+    //Memory::unallocate((StdString*)__void_pointer);
+    //delete (StdString*)__void_pointer;
     __void_pointer = null;
 }
 
@@ -68,13 +71,7 @@ String& String::operator=(const String& another)
 {
     if(&another != this)
     {
-        this->_length = another._length;
-        if(this->_value != null)
-        {
-            delete (StdString*)this->_value;
-            this->_value = null;
-        }
-        this->_value  = new StdString((*(StdString*)another._value).c_str());
+        *this = String(another.toCharArray());
     }
     return *this;
 }

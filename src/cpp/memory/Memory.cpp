@@ -14,6 +14,7 @@ void Memory::__debug__log(Action __action, uint64 __size, const char*  __typeNam
 {
     if(Memory::debug)
     {
-        Debug::logf("{} {} with {} bytes. {}", (__action == Action::NEW ? "Allocate" : "Delete"), __typeName, __size, __note);
+        // @important Don't use Debug.logf(...). Because it it use String type, that also use Memory -> recursive
+        Debug::log("%s {%s} with %u bytes. %s", (__action == Action::NEW ? "Allocate" : "Delete"), __typeName, __size, __note);
     }
 }

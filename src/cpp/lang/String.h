@@ -22,6 +22,7 @@ public:
 	virtual operator const char*() const;
 
     virtual String&     operator =(const String& another);
+
     /**
      * Get character in String at index
      * @param index index of a char in this String
