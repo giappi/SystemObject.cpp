@@ -54,6 +54,12 @@ public:
     static String valueToString(const double x);
     static String valueToString(const long double x);
     static String valueToString(const char* x);
+    static String valueToString(String x);
+    template <class T>
+    static String valueToString(const T* x)
+    {
+        return valueToString((uint64)x);
+    };
 
     static std::vector<String> _tmp_logf_arguments;
 

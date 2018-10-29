@@ -100,7 +100,13 @@ String Debug::valueToString(const long double x)
 
 String Debug::valueToString(const char* x)
 {
-    return String("\"") + x + "\"";
+    return String("'") + x + "'";
 }
+
+String Debug::valueToString(String x)
+{
+    return String(x);
+}
+
 
 std::vector<String> Debug::_tmp_logf_arguments = {};
