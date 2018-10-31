@@ -35,7 +35,8 @@ void Debug::logfv(String formated, std::vector<String> arguments)
     {
         formated = formated.replaceN("{}", arg_i, 1);
     }
-    Debug::log(formated.toCharArray());
+    // Fix log doesn't print character '%'
+    printf(formated.toCharArray());
 }
 
 
