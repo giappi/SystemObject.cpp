@@ -121,7 +121,16 @@ public:
     {
         if(&__another != this)
         {
-            *this = Function(__another);
+            Fn*    fx1 = __another._fx;
+            if(fx1 != null && this->_fx != null)
+            {
+                Memory::unallocate(this->_fx);
+                this->_fx = fx1->clone();
+            }
+            else
+            {
+                this->_fx = null;
+            }
         }
         return *this;
     }
