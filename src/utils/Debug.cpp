@@ -29,14 +29,16 @@ void Debug::log(const char* __formated, ... )
 
 }
 
-void Debug::logfv(String formated, std::vector<String> arguments)
+void Debug::logfv(const String& __formated, const std::vector<String>& __arguments)
 {
-    for(String arg_i : arguments)
+    String formating = __formated;
+
+    for(const String& arg_i : __arguments)
     {
-        formated = formated.replaceN("{}", arg_i, 1);
+        formating = formating.replaceN("{}", arg_i, 1);
     }
-    // Fix log doesn't print character '%'
-    printf("%s\n", formated.toCharArray());
+
+    printf("%s\n", formating.toCharArray());
 }
 
 
@@ -114,6 +116,3 @@ String Debug::valueToString(String x)
 {
     return String(x);
 }
-
-
-std::vector<String> Debug::_tmp_logf_arguments = {};

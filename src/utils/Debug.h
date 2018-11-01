@@ -13,34 +13,69 @@
 #include <vector>
 
 
+/**
+ * Debugging
+ */
 class Debug
 {
 public:
 
-    static void log(const char* formated, ...);
+    /**
+     * Same as the function printf(...)
+     * @param formated the c-string that formartted. Each argument is '%d', '%f', '%s', ...
+     * @param ... unlimited arguments in difference type
+     */
+    static void log(const char* formatted, ...);
 
-    static std::vector<String> argumentsToString()
-    {
-        return _tmp_logf_arguments;
-    }
-
-    template <class T, class... Args>
-    static std::vector<String> argumentsToString(T first, Args... args)
-    {
-        _tmp_logf_arguments.push_back(valueToString(first));
-        return argumentsToString(args...);
-    }
-
+    /**
+     * Print log in console interface with formarted template string
+     * @tparam Args... the types of arguments
+     * @param formatted the String that formartted. Each argument is replace by template '{}'
+     * @param args the arguments in difference type
+     */
     template <class... Args>
-    static void logf(String formated, Args... args)
+    static void logf(String formatted, Args... args)
     {
-        // fix bug: log was wrong: _tmp_logf_arguments must clear before use
-        _tmp_logf_arguments.clear();
-        std::vector<String> arguments = argumentsToString(args...);
-        logfv(formated, arguments);
+        std::vector<String> arguments = {};
+        argumentsToString(&arguments, args...);
+        logfv(formatted, arguments);
     };
 
-    static void logfv(String formated, std::vector<String> arguments);
+private:
+
+    /**
+     * Convert variadic arguments into a array
+     * @tparam T any type
+     * @tparam Args... the types of arguments
+     * @param _tmp_logf_arguments an array that save converted arguments
+     * @param first the current processing argument
+     * @param args the arguments in difference type
+     */
+    template <class T, class... Args>
+    static void argumentsToString(std::vector<String>* const _tmp_logf_arguments, T first, Args... args)
+    {
+        _tmp_logf_arguments->push_back(valueToString(first));
+        argumentsToString(_tmp_logf_arguments, args...);
+        return;
+    }
+
+    /**
+     * the function to terminate recursive
+     * @param _tmp_logf_arguments (unused)
+     */
+    static void argumentsToString(std::vector<String>* const _tmp_logf_arguments)
+    {
+        return;
+    }
+
+    /**
+     * Print log in console interface with formarted template string
+     * @param formatted the String that formartted. Each argument is replace by template '{}'
+     * @param arguments the arguments in String
+     */
+    static void logfv(const String& formatted, const std::vector<String>& arguments);
+
+public:
 
     static String valueToString(const boolean x);
     static String valueToString(const char x);
@@ -61,8 +96,6 @@ public:
     {
         return valueToString((uint64)x);
     };
-
-    static std::vector<String> _tmp_logf_arguments;
 
 };
 
