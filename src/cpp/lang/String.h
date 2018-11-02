@@ -17,6 +17,10 @@ class String:
     public ArrayAccess<char>
 {
 public:
+
+    /**
+     * Default constructor
+     */
 	String();
 
 	/**
