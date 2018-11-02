@@ -1,8 +1,17 @@
+/*
+ * File:   String.h
+ * Author: Giappi
+ * Description: class String, provide functions to process string
+ */
+
 #pragma once
 #include "_typedef.h"
 #include "Object.h"
 #include "ArrayAccess.h"
 
+/**
+ * class String
+ */
 class String:
     public Object,
     public ArrayAccess<char>
@@ -10,9 +19,21 @@ class String:
 public:
 	String();
 
+	/**
+	 * Create String from char array
+	 * @param str
+	 */
 	String(const char* str);
+
+	/**
+	 * Destructor
+	 */
 	virtual ~String();
 
+	/**
+	 * Create String from another String (copy)
+	 * @param str
+	 */
 	String(const String &str);
 
     /**
@@ -21,6 +42,11 @@ public:
      */
 	virtual operator const char*() const;
 
+	/**
+	 * Assignment Operator
+	 * @param another
+	 * @return
+	 */
     virtual String&     operator =(const String& another);
 
     /**
@@ -64,17 +90,18 @@ public:
      * @return true if exists, false otherwise
      */
     virtual boolean     exists(const char &ch) override;
+
     /**
      * Get length of this String
      * @return length of this String
      */
     virtual usize       getLength() const override;
+
     /**
      * get position of `str` in String, return length of this String if not found
      * @param str a text to search in this String
      * @return position of `str` in this String
      */
-
     virtual usize       indexOf(String str) const;
 
     /**
@@ -84,12 +111,11 @@ public:
      * @param fromIndex the index from which to start the search
      * @return position of `str` in this String
      */
-
     virtual usize       indexOf(String str, const usize fromIndex) const;
 
     /**
      * Get index of last character in this String
-     * @return index of last character, equalivant to (LENGTH - 1)
+     * @return index of last character, equivalent to (LENGTH - 1)
      */
     virtual usize       indexOfEndString() const;
 
@@ -110,11 +136,11 @@ public:
      * @return new replaced String
      */
     virtual String      replaceAll(const String &replaceFrom, const String &replaceTo);
-	/**
-     * Return a new String with all extra whitespaces from begining and ending removed
-     * @return the trimed String
-     */
 
+	/**
+     * Return a new String with all extra whitespaces from beginning and ending removed
+     * @return the trimmed String
+     */
 	virtual String      trim() const;
 
 	/**
@@ -143,7 +169,7 @@ public:
 
 	/**
      * Take a new string that is a substring of this string by first index and length of substring
-     * @param from the position that is the begining of substring
+     * @param from the position that is the beginning of substring
      * @param length the length of substring
      * @return the specified substring
      */
@@ -151,15 +177,15 @@ public:
 
 	/**
      * Take a new string that is a substring of this string by given index
-     * @param begin The begining index
+     * @param begin The beginning index
      * @param end The ending index
      * @return the specified substring
      */
-
 	virtual String      substring(const usize begin, const usize end) const;
+
 	/**
      * Take a new string that is a substring of this string from given index to end of String
-     * @param begin The begining index
+     * @param begin The beginning index
      * @return the specified substring
      */
     virtual String      substring(const usize begin) const;
@@ -177,16 +203,19 @@ private:
     virtual void        updateLength();
 
 public:
+
 	/**
-     * property to get length of this String, equalivant to this.getLength()
+     * property to get length of this String, equivalent to this.getLength()
      */
 	const usize&        length;
 
 private:
+
     /**
      * store length of this String
      */
     usize               _length = 0;
+
     /**
      * store data of this String
      */
